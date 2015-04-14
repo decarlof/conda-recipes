@@ -16,9 +16,10 @@ requirements:
   run:
     - python
     - numpy
-    - scipy
-    - pylab
 
+test:
+  imports:
+    - spefile
 
 about:
   home: https://pythonhosted.org/pyspec/

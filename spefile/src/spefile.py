@@ -24,10 +24,6 @@ import numpy
 import time
 import struct
 
-from scipy import *
-from pylab import *
-
-
 __version__   = "$Revision$"
 __author__    = "Stuart B. Wilkins <stuwilkins@mac.com>"
 __date__      = "$LastChangedDate$"
