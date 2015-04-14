@@ -32,7 +32,7 @@ requirements:
     - dxfile
 
 about:
-  home: http://tomogrid.readthedocs.org
+  home: http://dataexchange.readthedocs.org
   license: BSD
   summary: 'X-ray tomography Data Exchange'
 

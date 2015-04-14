@@ -16,7 +16,7 @@ requirements:
     - python
 
 about:
-  home: http://tomogrid.readthedocs.org
+  home: https://pythonhosted.org/pyspec/
   license: BSD
-  summary: 'X-ray tomography Data Exchange'
+  summary: 'pyspec is a set of python routines for data analysis of x-ray scattering experiments'
 
