@@ -15,9 +15,6 @@ requirements:
   run:
     - python
 
-test:
-  imports:
-    - EdfFile
 
 about:
   home: http://pymca.sourceforge.net/
