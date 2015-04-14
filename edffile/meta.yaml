@@ -11,10 +11,15 @@ build:
 requirements:
   build:
     - python
+    - setuptools
  
   run:
     - python
+    - numpy
 
+test:
+  imports:
+    - EdfFile
 
 about:
   home: http://pymca.sourceforge.net/
