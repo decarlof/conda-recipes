@@ -11,17 +11,12 @@ build:
 requirements:
   build:
     - python
-    - h5py
-    - pyhdf
-    - tifffile
-    - edffile
-    - spefile
-    - olefile
-    - netcdf4
-    - dxfile
  
   run:
     - python
+    - scipy
+    - pillow
+    - scikit-image    
     - h5py
     - pyhdf
     - tifffile
@@ -30,6 +25,10 @@ requirements:
     - olefile
     - netcdf4
     - dxfile
+
+test:
+  imports:
+    - dataexchange
 
 about:
   home: http://dataexchange.readthedocs.org
