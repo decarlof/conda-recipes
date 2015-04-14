@@ -1,0 +1,22 @@
+package:
+  name: edffile
+  version: '1.7'
+
+source:
+  git_url: https://github.com/decarlof/pyhdf.git
+  
+build:
+  number: 0
+
+requirements:
+  build:
+    - python
+ 
+  run:
+    - python
+
+about:
+  home: http://pyclint.sourceforge.net/pyhdf
+  license: BSD
+  summary: 'Reader/Writer for HDF4 files'
+
