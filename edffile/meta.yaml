@@ -1,6 +1,6 @@
 package:
   name: edffile
-  version: '0.0.4'
+  version: '1.6'
 
 source:
   git_url: https://github.com/decarlof/edffile.git
@@ -16,7 +16,7 @@ requirements:
     - python
 
 about:
-  home: http://tomogrid.readthedocs.org
+  home: http://pymca.sourceforge.net/
   license: BSD
-  summary: 'X-ray tomography Data Exchange'
+  summary: 'Reader for EDF files part of the PyMCA X-ray Fluorescence Toolkit'
 

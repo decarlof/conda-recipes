@@ -18,5 +18,5 @@ requirements:
 about:
   home: https://pythonhosted.org/pyspec/
   license: BSD
-  summary: 'pyspec is a set of python routines for data analysis of x-ray scattering experiments'
+  summary: 'Reader for SPE files part of pyspec a set of python routines for data analysis of x-ray scattering experiments'
 
