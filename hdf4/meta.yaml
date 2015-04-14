@@ -1,24 +1,23 @@
 package:
-  name: tifffile
-  version: 2014.08.24
+    name: hdf4
+    version: 4.2.9
 
 source:
-  git_url: https://github.com/decarlof/conda-recipes.git
+    fn: hdf-4.2.9.tar.bz2
+    url: http://www.hdfgroup.org/ftp/HDF/releases/HDF4.2.9/src/hdf-4.2.9.tar.bz2
+    md5: c268a703f334ee4987fa710a0de9b9fc
+
+build:
+    number: 0
 
 requirements:
-  build:
-    - python
-    - numpy
-  run:
-    - python
-    - numpy
+    build:
 
+    run:
 
 test:
-  imports:
-    - tifffile
+    imports:
 
 about:
-  home: http://www.lfd.uci.edu/~gohlke/
-  license: BSD
-  summary: 'Read and write image data from and to TIFF files'
+    home: http://www.hdfgroup.org/HDF4/
+    license: BSD-style (http://www.hdfgroup.org/ftp/HDF/current/src/unpacked/COPYING)
