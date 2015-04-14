@@ -3,7 +3,7 @@ package:
   version: 2010
 
 source:
-  git_url: https://github.com/decarlof/spefile.git
+  git_url: https://github.com/decarlof/conda-recipes.git
   
 build:
   number: 0
@@ -14,6 +14,10 @@ requirements:
  
   run:
     - python
+
+test:
+  imports:
+    - spefile
 
 about:
   home: https://pythonhosted.org/pyspec/
