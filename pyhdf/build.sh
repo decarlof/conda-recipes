@@ -1,9 +1,16 @@
 #!/bin/bash
 
-$PYTHON setup.py install
+mkdir -vp ${PREFIX}/bin;
 
-# Add more build steps here, if they are necessary.
+export CFLAGS="-Wall -g -m64 -pipe -O2 -march=x86-64 -fPIC"
+export CXXLAGS="${CFLAGS}"
+export CPPFLAGS="-I${PREFIX}/include"
+export LDFLAGS="-L${PREFIX}/lib"
 
-# See
-# http://docs.continuum.io/conda/build.html
-# for a list of environment variables that are set during the build process.
+touch requirements.txt;
+
+${PYTHON} setup.py install || exit 1;
+
+#POST_LINK="${PREFIX}/bin/.pyhdf-post-link.sh"
+#cp -v ${RECIPE_DIR}/post-link.sh ${POST_LINK};
+#chmod -v 0755 ${POST_LINK};
