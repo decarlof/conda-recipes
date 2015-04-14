@@ -1,6 +1,6 @@
 package:
   name: tifffile
-  version: 2014.08.24
+  version: '2014.08.24'
 
 source:
   git_url: https://github.com/decarlof/tifffile.git
