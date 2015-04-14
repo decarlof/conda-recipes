@@ -1,6 +1,6 @@
 #!/bin/bash
-cd src
-
+#cd src
+cd /local/Software/projects/conda-recipes/edffile/src
 $PYTHON setup.py install
 
 # Add more build steps here, if they are necessary.
