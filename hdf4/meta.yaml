@@ -4,7 +4,8 @@ package:
 
 source:
     fn: hdf-4.2.9.tar.bz2
-    path: /Users/decarlo/Downloads/hdf-4.2.9.tar.bz2
+    url: ftp://www.hdfgroup.org/HDF/prev-releases/HDF4.2.9/src/hdf-4.2.9.tar.bz2
+    md5: c268a703f334ee4987fa710a0de9b9fc
 build:
     number: 0
 
