@@ -41,6 +41,7 @@ Examples
 """
 
 import os
+import logging
 import numpy as np 
 import math
 import struct
@@ -58,8 +59,17 @@ from tifffile import TiffFile
 
 class XTomoReader:
 
-    def __init__(self, file_name):
+    def __init__(self, 
+                    file_name, 
+                    logger=None, 
+                    log='INFO'):
+
         self.file_name = file_name
+
+        # Set the log level.
+        self.logger = None
+        self._log_level = str(log).upper()
+        self._init_logging()
 
     def hdf5(self,
              array_name=None,
