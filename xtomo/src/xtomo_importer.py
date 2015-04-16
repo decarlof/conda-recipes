@@ -58,7 +58,7 @@ import logging
 import numpy as np
 import os
 
-from dataexchange.xtomo.xtomo_reader import XTomoReader
+from xtomo_reader import XTomoReader
 
 class Import():
     def __init__(self, data=None, data_white=None,
