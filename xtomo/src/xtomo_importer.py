@@ -397,7 +397,7 @@ class Import():
                 self.logger.info("Reading projection file: [%s]", os.path.realpath(_file_name))
                 self.logger.info("data type: [%s]", data_type)
 
-                f = XTomoReader(self, _file_name)
+                f = XTomoReader(_file_name)
                 if (data_type is 'hdf4'):
                     tmpdata = f.hdf4(x_start=slices_start,
                                      x_end=slices_end,
