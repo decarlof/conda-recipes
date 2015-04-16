@@ -61,14 +61,20 @@ class XTomoReader():
     def __init__(self, 
                     file_name, 
                     logger=None, 
+                    color_log=True, 
+                    stream_handler=True,
                     log='INFO'):
 
         self.file_name = file_name
 
+        # Logging init.
+        if color_log: # enable colored logging
+            import colorer
+
         # Set the log level.
         self.logger = None
         self._log_level = str(log).upper()
-        self._init_logging()
+        self._init_logging(stream_handler)
 
     def hdf5(self,
              array_name=None,
