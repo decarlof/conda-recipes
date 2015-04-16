@@ -962,8 +962,6 @@ class XTomoReader():
         # return the data
         return out_data
 
-    _no_data_err = "{file} does not contain {tag}"
-
     def _init_logging(self, stream_handler):
         """
         Setup and start command line logging.
@@ -1000,3 +998,6 @@ class XTomoReader():
 
         # Update logger.
         if not len(self.logger.handlers): # For fist time create handlers.
+
+    _no_data_err = "{file} does not contain {tag}"
+
