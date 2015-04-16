@@ -1000,4 +1000,3 @@ class XTomoReader():
 
         # Update logger.
         if not len(self.logger.handlers): # For fist time create handlers.
-
