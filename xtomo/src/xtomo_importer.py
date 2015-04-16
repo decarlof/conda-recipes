@@ -71,7 +71,7 @@ class Import():
 
         # Logging init.
         if color_log: # enable colored logging
-            from dataexchange.tools import colorer
+            import colorer
 
         # Set the log level.
         self.logger = None
