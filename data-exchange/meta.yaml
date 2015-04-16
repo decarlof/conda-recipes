@@ -1,6 +1,6 @@
 package:
   name: data-exchange
-  version: '0.1.1'
+  version: '0.1.6'
 
 source:
   git_url: https://github.com/decarlof/data-exchange.git
@@ -16,7 +16,7 @@ requirements:
     - python
     - scipy
     - pillow
-    - scikit-image    
+    - scikit-image   
     - h5py
     - pyhdf
     - tifffile
