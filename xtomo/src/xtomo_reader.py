@@ -962,43 +962,43 @@ class XTomoReader():
         # return the data
         return out_data
 
-    def _init_logging(self, stream_handler):
+    def _init_logging(self):
         """
         Setup and start command line logging.
         """
         # Top-level log setup.
-        self.logger = logging.getLogger("data exchange")
+        self.logger = logging.getLogger("data exchange") 
         if self._log_level == 'DEBUG':
-                self.logger.setLevel(logging.DEBUG)
+            self.logger.setLevel(logging.DEBUG)
         elif self._log_level == 'INFO':
-                self.logger.setLevel(logging.INFO)
+            self.logger.setLevel(logging.INFO) 
         elif self._log_level == 'WARN':
-                self.logger.setLevel(logging.WARN)
+            self.logger.setLevel(logging.WARN)
         elif self._log_level == 'WARNING':
-                self.logger.setLevel(logging.WARNING)
+            self.logger.setLevel(logging.WARNING)
         elif self._log_level == 'ERROR':
-                self.logger.setLevel(logging.ERROR)
-
+            self.logger.setLevel(logging.ERROR)
+        
         # Terminal stream log.
         ch = logging.StreamHandler()
         if self._log_level == 'DEBUG':
-                ch.setLevel(logging.DEBUG)
+            ch.setLevel(logging.DEBUG)
         elif self._log_level == 'INFO':
-                ch.setLevel(logging.INFO)
+            ch.setLevel(logging.INFO) 
         elif self._log_level == 'WARN':
-                ch.setLevel(logging.WARN)
+            ch.setLevel(logging.WARN)
         elif self._log_level == 'WARNING':
-                ch.setLevel(logging.WARNING)
+            ch.setLevel(logging.WARNING)
         elif self._log_level == 'ERROR':
-                ch.setLevel(logging.ERROR)
-
+            ch.setLevel(logging.ERROR)
+        
         # Show date and time.
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         ch.setFormatter(formatter)
-
+            
         # Update logger.
         if not len(self.logger.handlers): # For fist time create handlers.
-
+            self.logger.addHandler(ch)
 
     _no_data_err = "{file} does not contain {tag}"
 
