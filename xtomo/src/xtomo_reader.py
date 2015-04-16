@@ -57,8 +57,7 @@ from pyhdf import SD
 from EdfFile import EdfFile
 from tifffile import TiffFile
 
-class XTomoReader:
-
+class XTomoReader():
     def __init__(self, 
                     file_name, 
                     logger=None, 
