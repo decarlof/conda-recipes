@@ -498,18 +498,18 @@ class XTomoReader():
                     stream = ole.openstream('ImageInfo/ImagesTaken')
                     data = stream.read()
                     nev = struct.unpack('<I', data)
-                    if verbose: print "ImageInfo/ImagesTaken = %i" % nev[0]  
+                    self.logger.info("ImageInfo/ImagesTaken = %i", nev[0])
                     n_images = nev[0]
                 if ole.exists('ImageInfo/Angles'):                  
                     stream = ole.openstream('ImageInfo/Angles')
                     data = stream.read()
                     struct_fmt = "<{}f".format(n_images)
                     angles = struct.unpack(struct_fmt, data)
-                    if verbose: print "ImageInfo/Angles: \n ",  angles  
+                    self.logger.info("ImageInfo/Angles: \n ",  angles)
                     theta = np.asarray(angles)                
                     num_z = theta.size
         	    if z_end is 0: z_end = num_z
-		    if verbose: print "Constructed theta"
+		    self.logger.info("Constructed theta")
                 dataset = theta[z_start:z_end:z_step]
             else:
                 ole = olef.OleFileIO(self.file_name)
@@ -518,7 +518,7 @@ class XTomoReader():
                     stream = ole.openstream('ImageInfo/ImageWidth')
                     data = stream.read()
                     nev = struct.unpack('<I', data)
-                    if verbose: print "ImageInfo/ImageWidth = %i" % nev[0]  
+                    self.logger.info("ImageInfo/ImageWidth = %i", nev[0])
                     datasize[0] = np.int(nev[0])
                     n_cols = datasize[0]
 
@@ -526,7 +526,7 @@ class XTomoReader():
                     stream = ole.openstream('ImageInfo/ImageHeight')
                     data = stream.read()
                     nev = struct.unpack('<I', data)
-                    if verbose: print "ImageInfo/ImageHeight = %i" % nev[0]  
+                    self.logger.info("ImageInfo/ImageHeight = %i", nev[0])
                     datasize[1] = np.int(nev[0])
                     n_rows = datasize[1]
 
@@ -534,7 +534,7 @@ class XTomoReader():
                     stream = ole.openstream('ImageInfo/ImagesTaken')
                     data = stream.read()
                     nev = struct.unpack('<I', data)
-                    if verbose: print "ImageInfo/ImagesTaken = %i" % nev[0]  
+                    self.logger.info("ImageInfo/ImagesTaken = %i", nev[0])
                     nimgs = nev[0]
                     datasize[2] = np.int(nimgs)
                     n_images = datasize[2]
@@ -546,9 +546,9 @@ class XTomoReader():
                     struct_fmt = '<1I'
                     datatype = struct.unpack(struct_fmt, data)
                     datatype = int(datatype[0])
-                    if verbose: print "ImageInfo/DataType: %f " %  datatype  
+                    self.logger.info("ImageInfo/DataType: %f ", datatype)
 
-                if verbose: print 'Reading images - please wait...'
+                self.logger.info("Reading images - please wait...")
                 absdata = np.empty((n_cols, n_rows, n_images), dtype=np.float32)
                 #Read the images - They are stored in ImageData1, ImageData2... Each
                 #folder contains 100 images 1-100, 101-200...           
