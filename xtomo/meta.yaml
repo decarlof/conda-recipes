@@ -28,7 +28,8 @@ requirements:
 
 test:
   imports:
-    - xtomo
+    - xtomo_importer
+    - xtomo_exporter
 
 about:
   home: http://dataexchange.readthedocs.org
