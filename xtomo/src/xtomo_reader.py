@@ -962,7 +962,7 @@ class XTomoReader():
         # return the data
         return out_data
 
-    def _init_logging(self):
+    def _init_logging(self, stream_handler):
         """
         Setup and start command line logging.
         """
