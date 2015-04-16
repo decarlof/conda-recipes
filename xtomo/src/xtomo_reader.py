@@ -42,11 +42,10 @@ Examples
 
 import os
 import logging
+
 import numpy as np 
 import math
 import struct
-import os
-import warnings
 
 import PIL.Image as Image
 
@@ -964,3 +963,41 @@ class XTomoReader():
         return out_data
 
     _no_data_err = "{file} does not contain {tag}"
+
+    def _init_logging(self, stream_handler):
+        """
+        Setup and start command line logging.
+        """
+        # Top-level log setup.
+        self.logger = logging.getLogger("data exchange")
+        if self._log_level == 'DEBUG':
+            self.logger.setLevel(logging.DEBUG)
+        elif self._log_level == 'INFO':
+            self.logger.setLevel(logging.INFO)
+        elif self._log_level == 'WARN':
+            self.logger.setLevel(logging.WARN)
+        elif self._log_level == 'WARNING':
+            self.logger.setLevel(logging.WARNING)
+        elif self._log_level == 'ERROR':
+            self.logger.setLevel(logging.ERROR)
+
+        # Terminal stream log.
+        ch = logging.StreamHandler()
+        if self._log_level == 'DEBUG':
+            ch.setLevel(logging.DEBUG)
+        elif self._log_level == 'INFO':
+            ch.setLevel(logging.INFO)
+        elif self._log_level == 'WARN':
+            ch.setLevel(logging.WARN)
+        elif self._log_level == 'WARNING':
+            ch.setLevel(logging.WARNING)
+        elif self._log_level == 'ERROR':
+            ch.setLevel(logging.ERROR)
+
+        # Show date and time.
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        ch.setFormatter(formatter)
+
+        # Update logger.
+        if not len(self.logger.handlers): # For fist time create handlers.
+

@@ -61,8 +61,14 @@ import os
 from xtomo_reader import XTomoReader
 
 class Import():
-    def __init__(self, data=None, data_white=None,
-                 data_dark=None, theta=None, color_log=True, stream_handler=True, log='INFO'):
+    def __init__(self, 
+                    data=None, 
+                    data_white=None,
+                    data_dark=None, 
+                    theta=None, 
+                    color_log=True, 
+                    stream_handler=True, 
+                    log='INFO'):
 
         self.data = data
         self.data_white = data_white
