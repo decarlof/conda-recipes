@@ -1,6 +1,7 @@
 #!/bin/bash
 
 mkdir -vp ${PREFIX}/bin;
+ls
 
 ARCH="$(uname 2>/dev/null)"
 
