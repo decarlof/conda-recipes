@@ -17,8 +17,9 @@ Example on how to use the `xtomo_raw`_ module to read Diamond NeXuS raw tomograp
 .. _xtomo_raw: dataexchange.xtomo.xtomo_importer.html
 """
 
-# Data Exchange: https://github.com/data-exchange/data-exchange
-import dataexchange
+# Data Exchange: https://github.com/decarlof/conda-recipes
+import xtomo_importer as xtomo_imp 
+import xtomo_exporter as xtomo_exp
 
 def main():
 
@@ -27,7 +28,7 @@ def main():
 
     # Read raw data 
     # set slice_start and slice_end to  full size. 1600-1610 is for testing only
-    read = dataexchange.Import()
+    read = xtomo_imp.Import()
     data, white, dark, theta = read.xtomo_raw(file_name, 
                                                         data_type='nxs', 
                                                         slices_start=1600,
@@ -37,7 +38,7 @@ def main():
     
     
     # Save data as dataExchange
-    write = dataexchange.Export()
+    write = xtomo_exp.Export()
     write.xtomo_exchange(data = data,
                           data_white = white,
                           data_dark = dark,

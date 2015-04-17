@@ -17,15 +17,16 @@ Example on how to use the `xtomo_raw`_ module to read SLS TOMCAT TIFF raw tomogr
 .. _xtomo_raw: dataexchange.xtomo.xtomo_importer.html
 """
 
-# Data Exchange: https://github.com/data-exchange/data-exchange
-import dataexchange
+# Data Exchange: https://github.com/decarlof/conda-recipes
+import xtomo_importer as xtomo_imp 
+import xtomo_exporter as xtomo_exp
 
 import re
 
 def main():
 
-    file_name = '/media/DISK_02/databank/templates/sls_tomcat/Hornby_SLS/Hornby_b.tif'
-    log_file = '/media/DISK_02/databank/templates/sls_tomcat/Hornby_SLS/Hornby.log'
+    file_name = '/media/DISK_02/databank/templates/sls_tomcat/sample_name.tif'
+    log_file = '/media/DISK_02/databank/templates/sls_tomcat/sample_name.log'
     hdf5_file_name = '/media/DISK_02/databank/templates/dataExchange/tmp/SLS.h5'
 
     sample_name = 'Hornby_b'
@@ -58,7 +59,7 @@ def main():
     projections_angle_end = 180 + angular_step
 
     # Read raw data
-    read = dataexchange.Import()
+    read = xtomo_imp.Import()
     data, white, dark, theta = read.xtomo_raw(file_name,
                                                        projections_start = projections_start,
                                                        projections_end = projections_end,
@@ -71,7 +72,7 @@ def main():
                                                        log='INFO'
                                                        )
     # Save data as dataExchange
-    write = dataexchange.Export()
+    write = xtomo_exp.Export()
     write.xtomo_exchange(data = data,
                           data_white = white,
                           data_dark = dark,
