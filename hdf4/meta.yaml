@@ -3,8 +3,7 @@ package:
     version: 4.2.9
 
 source:
-    fn: hdf-4.2.9.tar.bz2
-    url: ftp://www.hdfgroup.org/HDF/prev-releases/HDF4.2.9/src/hdf-4.2.9.tar.bz2
+    git_url: https://github.com/decarlof/conda-recipes.git
 
 build:
     number: 0
