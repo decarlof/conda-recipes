@@ -1,7 +1,7 @@
 #!/bin/bash
 
 mkdir -vp ${PREFIX}/bin;
-ls
+pwd;
 
 ARCH="$(uname 2>/dev/null)"
 
@@ -13,7 +13,11 @@ export CXXFLAGS="${CFLAGS}"
 LinuxInstallation() {
 
     chmod +x configure;
-
+    pwd;
+    pwd;
+    pwd;
+    pwd;
+    pwd;
     ./configure \
         --disable-static \
         --enable-linux-lfs \
