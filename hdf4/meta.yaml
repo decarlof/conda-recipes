@@ -1,6 +1,6 @@
 package:
     name: hdf4
-    version: 4.2.9
+    version: 4.2.10
 
 source:
     git_url: https://github.com/decarlof/conda-recipes.git
