@@ -6,8 +6,8 @@ from distutils.extension import Extension
 setup(
     author = 'Francesco De Carlo, Argonne National Laboratory',
     description = 'Tomography data exchange toolbox',
-    py_modules = ['xtomo_importer', 'xtomo_reader' , 'xtomo_exporter' , 'colorer'],
-    name = 'xtomo',
+    py_modules = ['xtomo_hdf4_importer', 'xtomo_hdf4_reader' , 'xtomo_hdf4_exporter' , 'colorer'],
+    name = 'xtomo_hdf4',
     requires = (
         'python',
         ),

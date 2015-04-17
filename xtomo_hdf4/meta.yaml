@@ -1,6 +1,6 @@
 package:
-  name: xtomo
-  version: '0.1.18'
+  name: xtomo_hdf4
+  version: '0.2'
 
 source:
   git_url: https://github.com/decarlof/conda-recipes.git
@@ -28,8 +28,8 @@ requirements:
 
 test:
   imports:
-    - xtomo_importer
-    - xtomo_exporter
+    - xtomo_hdf4_importer
+    - xtomo_hdf4_exporter
 
 about:
   home: http://dataexchange.readthedocs.org
