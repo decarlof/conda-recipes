@@ -2,7 +2,7 @@
 """Read tomographic image data from various format files.
 
 Supported image fomats include TIFF, PackBits and LZW encoded TIFF, 
-HDF5 (Data Exchange and NeXuS), HDF4 (NeXuS), SPE, TXRM, XRM, EDF, 
+HDF5 (Data Exchange and NeXuS), SPE, TXRM, XRM, EDF, 
 DPT, netCDF. 
 
 .. module:: xtomo_importer.py
@@ -116,12 +116,12 @@ class Import():
                          flip='false',
                          log='INFO'):
         """
-        Read a stack of 2-D HDF4, TIFF, spe or netCDF images.
+        Read a stack of 2-D TIFF, spe or netCDF images.
 
         Parameters
         
         file_name : str
-            Base name of the input HDF4 or TIFF files.
+            Base name of the input TIFF files.
             For example if the projections names are /local/data/test_XXXX.hdf
             file_name is /local/data/test_.hdf
 
@@ -178,7 +178,6 @@ class Import():
                 - ``edf2``: ESRF file format when projections, dark and white are each in a single file (series of files)s
                 - ``nc``: netCDF data from 13-BM
                 - ``nxs``: NeXuS Diamond Light Source
-                - ``hdf4``: HDF4 files used on old detectors at APS 2-BM
                 - ``h5``: Data Exchange HDF5
                 - ``spe``: spe data from APS 13-BM
                 - ``tiff``: uncompressed regualar tiff files used at Petra III, ALS, Elettra, SLS, Australia, CHESS
@@ -223,19 +222,7 @@ class Import():
 
 
         # Determine file name and extension type.
-        if (data_type is 'hdf4'):
-            if file_name.endswith('h4') or \
-                file_name.endswith('hdf'):
-                data_file = os.path.splitext(file_name)[0]
-                dataExtension = os.path.splitext(file_name)[1]
-            if white_file_name.endswith('h4') or \
-                white_file_name.endswith('hdf'):
-                data_file_white = os.path.splitext(white_file_name)[0]
-            if dark_file_name.endswith('h4') or \
-                dark_file_name.endswith('hdf'):
-                data_file_dark = os.path.splitext(dark_file_name)[0]
-
-        elif (data_type is 'hdf5'):
+        if (data_type is 'hdf5'):
             if file_name.endswith('HDF') or \
                 file_name.endswith('hdf'):
                 data_file = os.path.splitext(file_name)[0]
@@ -404,13 +391,8 @@ class Import():
                 self.logger.info("data type: [%s]", data_type)
 
                 f = XTomoReader(_file_name)
-                if (data_type is 'hdf4'):
-                    tmpdata = f.hdf4(x_start=slices_start,
-                                     x_end=slices_end,
-                                     x_step=slices_step,
-                                     array_name='data')
 
-                elif (data_type is 'hdf5'):
+                if (data_type is 'hdf5'):
                     tmpdata = f.hdf5_2d(x_start=slices_start,
                                      x_end=slices_end,
                                      x_step=slices_step,
@@ -446,7 +428,6 @@ class Import():
 
                 if ((data_type is 'tiff') or
                     (data_type is 'compressed_tiff') or
-                    (data_type is 'hdf4') or
                     (data_type is 'edf2') or
                     (data_type is 'hdf5')):
                     if m == 0: # Get resolution once.
@@ -549,13 +530,7 @@ class Import():
                 self.logger.info("data type: [%s]", data_type)
 
                 f = XTomoReader(_file_name)
-                if (data_type is 'hdf4'):
-                    tmpdata = f.hdf4(x_start=slices_start,
-                                     x_end=slices_end,
-                                     x_step=slices_step,
-                                     array_name='data')
-
-                elif (data_type is 'hdf5'):
+                if (data_type is 'hdf5'):
                     # to check on real data set from APS 15-ID
                     tmpdata = f.hdf5_2d(x_start=slices_start,
                                      x_end=slices_end,
@@ -593,7 +568,6 @@ class Import():
 
                 if ((data_type is 'tiff') or
                     (data_type is 'compressed_tiff') or
-                    (data_type is 'hdf4') or
                     (data_type is 'edf2') or
                     (data_type is 'hdf5')):
                     if m == 0: # Get resolution once.
@@ -718,13 +692,7 @@ class Import():
                 self.logger.info("data type: [%s]", data_type)
 
                 f = XTomoReader(_file_name)
-                if (data_type is 'hdf4'):
-                    tmpdata = f.hdf4(x_start=slices_start,
-                                     x_end=slices_end,
-                                     x_step=slices_step,
-                                     array_name='data')
-
-                elif (data_type is 'hdf5'):
+                if (data_type is 'hdf5'):
                     # to check on real data set from APS 15-ID
                     tmpdata = f.hdf5_2d(x_start=slices_start,
                                      x_end=slices_end,
@@ -761,7 +729,6 @@ class Import():
 
                 if ((data_type is 'tiff') or
                     (data_type is 'compressed_tiff') or
-                    (data_type is 'hdf4') or 
                     (data_type is 'edf2') or
                     (data_type is 'hdf5')):
                     if m == 0: # Get resolution once.

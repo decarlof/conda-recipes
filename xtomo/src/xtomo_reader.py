@@ -4,7 +4,7 @@
 This module provides low level file format support to `xtomo_importer`_ 
 
 Supported image fomats include TIFF, PackBits and LZW encoded TIFF, 
-HDF5 (Data Exchange and NeXuS), HDF4 (NeXuS), SPE, TXRM, XRM, EDF, 
+HDF5 (Data Exchange and NeXuS), SPE, TXRM, XRM, EDF, 
 DPT, netCDF. 
 
 :Author:
@@ -31,11 +31,12 @@ Examples
 --------
 
 >>> f = XTomoReader(_file_name)
->>> if (data_type is 'hdf4'):
->>>     tmpdata = f.hdf4(x_start=slices_start,
->>>                         x_end=slices_end,
+>>> if (data_type is 'tiff'):
+>>>     tmpdata = f.tiff(x_start = slices_start,
+>>>                         x_end = slices_end,
 >>>                         x_step=slices_step,
->>>                         array_name='data')
+>>>                         dtype=dtype,
+>>>                         flip=flip)
 
 .. _xtomo_importer: dataexchange.xtomo.xtomo_importer.html
 """
@@ -54,7 +55,6 @@ import netCDF4 as nc
 import spefile as spe
 import olefile as olef
 
-from pyhdf import SD
 from EdfFile import EdfFile
 from tifffile import TiffFile
 
@@ -240,61 +240,6 @@ class XTomoReader():
 		dataset = None        
 
 	f.close()
-        return dataset
-
-    def hdf4(self,
-             array_name=None,
-             x_start=0,
-             x_end=0,
-             x_step=1,
-             y_start=0,
-             y_end=0,
-             y_step=1):
-        """ 
-        Read 2-D tomographic projection data from an HDF4 file.
-
-        Opens ``file_name`` and reads the contents
-        of the array specified by ``array_name`` in
-        the specified group of the HDF file.
-        
-        Parameters
-        
-        file_name : str
-            Input HDF file.
-        
-        array_name : str
-            Name of the array to be read at exchange group.
-        
-        x_start, x_end, x_step : scalar, optional
-            Values of the start, end and step of the
-            slicing for the whole ndarray.
-        
-        y_start, y_end, y_step : scalar, optional
-            Values of the start, end and step of the
-            slicing for the whole ndarray.
-        
-        Returns
-        
-        out : ndarray
-            Returns the data as a matrix.
-        """
-        # Read data from file.
-        f = SD.SD(self.file_name)
-        sds = f.select(array_name)
-        hdfdata = sds.get()
-        sds.endaccess()
-        f.end()
-	
-        num_x, num_y = hdfdata.shape
-	if x_end is 0:
-            x_end = num_x
-        if y_end is 0:
-            y_end = num_y
-
-        # Construct dataset.
-        dataset = hdfdata[x_start:x_end:x_step,
-                          y_start:y_end:y_step]
-
         return dataset
         
     def hdf5_2d(self,
