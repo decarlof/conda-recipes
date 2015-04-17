@@ -18,7 +18,6 @@ requirements:
     - pillow
     - scikit-image   
     - h5py
-    - pyhdf
     - tifffile
     - edffile
     - spefile

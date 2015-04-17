@@ -18,8 +18,8 @@ Example on how to use the `xtomo_raw`_ module to read xradia raw tomographic dat
 """
 
 # Data Exchange: https://github.com/data-exchange/data-exchange
-import xtomo_importer as xtomo_imp 
-import xtomo_exporter as xtomo_exp
+import xtomo_hdf4_importer as xtomo_imp 
+import xtomo_hdf4_exporter as xtomo_exp
 
 def main():
 
