@@ -12,12 +12,6 @@ build:
 requirements:
     build:
         - python
-        - distribute
-        - jpeg
-        - numpy
-        - zlib
-        - hdf4
-        - szip
 
     run:
         - python
