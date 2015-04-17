@@ -11,7 +11,7 @@ export CXXFLAGS="${CFLAGS}"
 #export LDFLAGS="-L${PREFIX}/lib"
 
 LinuxInstallation() {
-
+    cd hdf4/hdf-4.2.9/;
     chmod +x configure;
     pwd;
     pwd;
