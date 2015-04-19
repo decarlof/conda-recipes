@@ -1,6 +1,6 @@
 package:
   name: xtomo
-  version: '0.1.18'
+  version: '0.1.19'
 
 source:
   git_url: https://github.com/decarlof/conda-recipes.git
@@ -24,6 +24,7 @@ requirements:
     - olefile
     - netcdf4
     - dxfile
+    - fabio
 
 test:
   imports:

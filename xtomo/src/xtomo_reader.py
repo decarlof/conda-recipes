@@ -54,6 +54,7 @@ import h5py
 import netCDF4 as nc
 import spefile as spe
 import olefile as olef
+import fabio
 
 from EdfFile import EdfFile
 from tifffile import TiffFile
@@ -353,6 +354,59 @@ class XTomoReader():
 	
         return array
         
+    def fabio(self, 
+             x_start=0,
+             x_end=0,
+             x_step=1,
+             y_start=0,
+             y_end=0,
+             y_step=1
+             ):
+             
+        """
+        Read 2-D tomographic projection data from a TIFF file.
+
+        Parameters
+        
+        file_name : str
+            Name of the input TIFF file.
+        
+        dtype : str, optional
+            Corresponding numpy data type of the TIFF file.
+        
+        x_start, x_end, x_step : scalar, optional
+            Values of the start, end and step of the
+            slicing for the whole ndarray.
+        
+        y_start, y_end, y_step : scalar, optional
+            Values of the start, end and step of the
+            slicing for the whole ndarray.
+        
+        Returns
+        
+        out : ndarray
+            Output 2-D matrix as numpy array.
+        """
+
+        img = fabio.open(self.file_name)
+        out = ixmg.data
+
+
+        self.logger.info("Accessing [%s] using fabio", self.file_name) 
+        num_x, num_y = out.shape
+
+        if x_end is 0:
+            x_end = num_x
+        if y_end is 0:
+            y_end = num_y
+        
+        array = out[x_start:x_end:x_step,
+                   y_start:y_end:y_step]
+	if flip == 'true':
+		array=np.rot90(array)
+	
+        return array
+
     def tiffc(self, 
               dtype='uint16',
               x_start=0,
