@@ -360,7 +360,8 @@ class XTomoReader():
              x_step=1,
              y_start=0,
              y_end=0,
-             y_step=1
+             y_step=1,
+             flip='false'
              ):
              
         """
@@ -389,10 +390,9 @@ class XTomoReader():
         """
 
         img = fabio.open(self.file_name)
-        out = ixmg.data
+        out = img.data
 
-
-        self.logger.info("Accessing [%s] using fabio", self.file_name) 
+        #self.logger.info("Accessing [%s] using fabio", self.file_name) 
         num_x, num_y = out.shape
 
         if x_end is 0:

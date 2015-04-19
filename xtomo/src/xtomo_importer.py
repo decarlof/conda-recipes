@@ -111,7 +111,7 @@ class Import():
                          white_zeros=True,
                          dark_zeros=True,
                          dtype='uint16',
-                         data_type='tiff',
+                         data_type='fabio',
                          exchange_rank = 0,
                          flip='false',
                          log='INFO'):
@@ -275,7 +275,6 @@ class Import():
                 file_name.endswith('tiff'):
                 data_file = os.path.splitext(file_name)[0]
                 dataExtension = os.path.splitext(file_name)[1]
-
             if white_file_name.endswith('tif') or \
                 white_file_name.endswith('tiff'):
                 data_file_white = os.path.splitext(white_file_name)[0]
@@ -348,6 +347,11 @@ class Import():
                 dark_file_name.endswith('xrm'):
                 data_file_dark = os.path.splitext(dark_file_name)[0]
 
+        elif (data_type is 'fabio'):
+            data_file = os.path.splitext(file_name)[0]
+            dataExtension = os.path.splitext(file_name)[1]
+            data_file_white = os.path.splitext(white_file_name)[0]
+            data_file_dark = os.path.splitext(dark_file_name)[0]
         
         projections_file_index = ["" for x in range(projections_digits)]
         for m in range(projections_digits):
@@ -421,6 +425,12 @@ class Import():
                                      dtype=dtype,
                                      flip=flip)
 
+                elif (data_type is 'fabio'):
+                    tmpdata = f.fabio(x_start=slices_start,
+                                     x_end=slices_end,
+                                     x_step=slices_step,
+                                     flip=flip)
+
                 elif (data_type is 'edf2'):
                     tmpdata = f.edf2(x_start=slices_start,
                                      x_end=slices_end,
@@ -429,6 +439,7 @@ class Import():
                 if ((data_type is 'tiff') or
                     (data_type is 'compressed_tiff') or
                     (data_type is 'edf2') or
+                    (data_type is 'fabio') or
                     (data_type is 'hdf5')):
                     if m == 0: # Get resolution once.
                         input_data = np.empty((len(ind), tmpdata.shape[0], tmpdata.shape[1]), dtype=dtype)
@@ -561,6 +572,12 @@ class Import():
                                      dtype=dtype,
                                      flip=flip)
 
+                elif (data_type is 'fabio'):
+                    tmpdata = f.fabio(x_start=slices_start,
+                                     x_end=slices_end,
+                                     x_step=slices_step,
+                                     flip=flip)
+
                 elif (data_type is 'edf2'):
                     tmpdata = f.edf2(x_start = slices_start,
                                      x_end = slices_end,
@@ -569,6 +586,7 @@ class Import():
                 if ((data_type is 'tiff') or
                     (data_type is 'compressed_tiff') or
                     (data_type is 'edf2') or
+                    (data_type is 'fabio') or
                     (data_type is 'hdf5')):
                     if m == 0: # Get resolution once.
                         input_data = np.empty((len(ind),
@@ -722,6 +740,12 @@ class Import():
                                      dtype=dtype,
                                      flip=flip)
 
+                elif (data_type is 'fabio'):
+                    tmpdata = f.fabio(x_start=slices_start,
+                                     x_end=slices_end,
+                                     x_step=slices_step,
+                                     flip=flip)
+
                 elif (data_type is 'edf2'):
                     tmpdata = f.edf2(x_start=slices_start,
                                      x_end=slices_end,
@@ -730,6 +754,7 @@ class Import():
                 if ((data_type is 'tiff') or
                     (data_type is 'compressed_tiff') or
                     (data_type is 'edf2') or
+                    (data_type is 'fabio') or
                     (data_type is 'hdf5')):
                     if m == 0: # Get resolution once.
                         input_data = np.empty((len(ind),
