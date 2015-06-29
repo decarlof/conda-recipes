@@ -25,10 +25,10 @@ import re
 
 def main():
 
-    file_name = '/media/DISK_02/databank/templates/diamond_JEEP/tiff/sample_name/im_.tif'
-    white_file_name = '/media/DISK_02/databank/templates/diamond_JEEP/tiff/sample_name/flat_.tif'
+    file_name = '/local/dataraid/databank/templates/diamond_JEEP/tiff/sample_name/im_.tif'
+    white_file_name = '/local/dataraid/databank/templates/diamond_JEEP/tiff/sample_name/flat_.tif'
 
-    hdf5_file_name = '/media/DISK_02/databank/templates/dataExchange/tmp/Diamond.h5'
+    hdf5_file_name = '/local/dataraid/databank/templates/dataExchange/tmp/Diamond.h5'
 
     sample_name = 'waterflow'
     

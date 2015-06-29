@@ -23,10 +23,10 @@ import xtomo_exporter as xtomo_exp
 
 def main():
 
-    file_name = '/media/DISK_02/databank/templates/anka_topo-tomo/radios/image_.tif'
-    dark_file_name = '/media/DISK_02/databank/templates/anka_topo-tomo/darks/image_.tif'
-    white_file_name = '/media/DISK_02/databank/templates/anka_topo-tomo/flats/image_.tif'
-    hdf5_file_name = '/media/DISK_02/databank/templates/dataExchange/tmp/Anka.h5'
+    file_name = '/local/dataraid/databank/templates/anka_topo-tomo/radios/image_.tif'
+    dark_file_name = '/local/dataraid/databank/templates/anka_topo-tomo/darks/image_.tif'
+    white_file_name = '/local/dataraid/databank/templates/anka_topo-tomo/flats/image_.tif'
+    hdf5_file_name = '/local/dataraid/databank/templates/dataExchange/tmp/Anka.h5'
 
     projections_start = 0
     projections_end = 3167

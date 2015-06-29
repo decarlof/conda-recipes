@@ -23,8 +23,8 @@ import xtomo_exporter as xtomo_exp
 
 def main():
 
-    file_name = '/media/DISK_02/databank/templates/aps_13-BM/SPE/sample_name_.SPE'
-    hdf5_file_name = '/media/DISK_02/databank/templates/dataExchange/tmp/APS_13_BM_spe.h5'
+    file_name = '/local/dataraid/databank/templates/aps_13-BM/SPE/sample_name_.SPE'
+    hdf5_file_name = '/local/dataraid/databank/templates/dataExchange/tmp/APS_13_BM_spe.h5'
 
     white_start = 1
     white_end = 8

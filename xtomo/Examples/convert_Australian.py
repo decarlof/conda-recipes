@@ -23,10 +23,10 @@ import xtomo_exporter as xtomo_exp
 
 def main():
 
-    file_name = '/media/DISK_02/databank/templates/australian_micro-tomography/SAMPLE_T_.tif'
-    dark_file_name = '/media/DISK_02/databank/templates/australian_micro-tomography/DF__BEFORE_.tif'
-    white_file_name = '/media/DISK_02/databank/templates/australian_micro-tomography/BG__BEFORE_.tif'
-    hdf5_file_name = '/media/DISK_02/databank/templates/dataExchange/tmp/Australian.h5'
+    file_name = '/local/dataraid/databank/templates/australian_micro-tomography/SAMPLE_T_.tif'
+    dark_file_name = '/local/dataraid/databank/templates/australian_micro-tomography/DF__BEFORE_.tif'
+    white_file_name = '/local/dataraid/databank/templates/australian_micro-tomography/BG__BEFORE_.tif'
+    hdf5_file_name = '/local/dataraid/databank/templates/dataExchange/tmp/Australian.h5'
 
     sample_name = 'Teeth'
 

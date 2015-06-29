@@ -23,10 +23,10 @@ import xtomo_exporter as xtomo_exp
 
 def main():
 
-    file_name = '/media/DISK_02/databank/templates/elettra_SYRMEP/tomo_.tif'
-    dark_file_name = '/media/DISK_02/databank/templates/elettra_SYRMEP/dark_.tif'
-    white_file_name = '/media/DISK_02/databank/templates/elettra_SYRMEP/flat_.tif'
-    hdf5_file_name = '/media/DISK_02/databank/templates/dataExchange/tmp/Elettra.h5'
+    file_name = '/local/dataraid/databank/templates/elettra_SYRMEP/tomo_.tif'
+    dark_file_name = '/local/dataraid/databank/templates/elettra_SYRMEP/dark_.tif'
+    white_file_name = '/local/dataraid/databank/templates/elettra_SYRMEP/flat_.tif'
+    hdf5_file_name = '/local/dataraid/databank/templates/dataExchange/tmp/Elettra.h5'
 
     projections_start = 1
     projections_end = 1441

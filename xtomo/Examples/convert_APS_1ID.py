@@ -25,9 +25,9 @@ import re
 
 def main():
 
-    file_name = '/media/DISK_02/databank/templates/aps_1-ID/data_.tif'
-    log_file = '/media/DISK_02/databank/templates/aps_1-ID/TomoStillScan.dat'
-    hdf5_file_name = '/media/DISK_02/databank/templates/dataExchange/tmp/APS_1_ID.h5'
+    file_name = '/local/dataraid/databank/templates/aps_1-ID/data_.tif'
+    log_file = '/local/dataraid/databank/templates/aps_1-ID/TomoStillScan.dat'
+    hdf5_file_name = '/local/dataraid/databank/templates/dataExchange/tmp/APS_1_ID.h5'
 
     #Read APS 1-ID log file data
     file = open(log_file, 'r')

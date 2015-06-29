@@ -25,9 +25,9 @@ import re
 
 def main():
 
-    file_name = '/media/DISK_02/databank/templates/sls_tomcat/sample_name.tif'
-    log_file = '/media/DISK_02/databank/templates/sls_tomcat/sample_name.log'
-    hdf5_file_name = '/media/DISK_02/databank/templates/dataExchange/tmp/SLS.h5'
+    file_name = '/local/dataraid/databank/templates/sls_tomcat/sample_name.tif'
+    log_file = '/local/dataraid/databank/templates/sls_tomcat/sample_name.log'
+    hdf5_file_name = '/local/dataraid/databank/templates/dataExchange/tmp/SLS.h5'
 
     sample_name = 'Hornby_b'
     
