@@ -54,7 +54,7 @@ import h5py
 import netCDF4 as nc
 import spefile as spe
 import olefile as olef
-import fabio
+import fabio as fb
 
 from EdfFile import EdfFile
 from tifffile import TiffFile
@@ -389,7 +389,7 @@ class XTomoReader():
             Output 2-D matrix as numpy array.
         """
 
-        img = fabio.open(self.file_name)
+        img = fb.open(self.file_name)
         out = img.data
 
         #self.logger.info("Accessing [%s] using fabio", self.file_name) 
