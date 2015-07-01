@@ -31,7 +31,7 @@ def main():
     sample_name = 'Teeth'
 
     projections_start = 0
-    projections_end = 18
+    projections_end = 1801
     white_start = 0
     white_end = 10
     white_step = 1

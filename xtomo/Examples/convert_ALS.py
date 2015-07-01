@@ -74,7 +74,7 @@ def main():
     projections_end = int(Angles[0])
 
     print dark_end, white_end, projections_end
-    projections_end = 20
+
     # Read raw data
     read = xtomo_imp.Import()
     data, white, dark, theta = read.xtomo_raw(file_name = file_name,
