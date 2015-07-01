@@ -24,7 +24,7 @@ import xtomo_exporter as xtomo_exp
 def main():
 
     file_name = '/local/dataraid/databank/templates/xradia_dtu/sample_name.txrm'
-    hdf5_file_name = '/local/dataraid/databank/templates/dataExchange/tmp/DTU.h5'
+    hdf5_file_name = '/local/dataraid/databank/templates/dataExchange/tmp/DTU_new_02.h5'
     sample_name = 'halvmaane_150kV-HE6-20X-60s'
 
     experimenter_name="Martin Skovgaard Andersen"

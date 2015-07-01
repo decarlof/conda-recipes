@@ -500,15 +500,14 @@ class XTomoReader():
                     self.logger.info("ImageInfo/ImagesTaken = %i", nev[0])
                     n_images = nev[0]
                 if ole.exists('ImageInfo/Angles'):                  
+                    self.logger.info("Reading Angles")
                     stream = ole.openstream('ImageInfo/Angles')
                     data = stream.read()
                     struct_fmt = "<{}f".format(n_images)
                     angles = struct.unpack(struct_fmt, data)
-                    self.logger.info("ImageInfo/Angles: \n ",  angles)
                     theta = np.asarray(angles)                
                     num_z = theta.size
         	    if z_end is 0: z_end = num_z
-		    self.logger.info("Constructed theta")
                 dataset = theta[z_start:z_end:z_step]
             else:
                 ole = olef.OleFileIO(self.file_name)
@@ -547,7 +546,7 @@ class XTomoReader():
                     datatype = int(datatype[0])
                     self.logger.info("ImageInfo/DataType: %f ", datatype)
 
-                self.logger.info("Reading images - please wait...")
+                self.logger.info("Reading images - please wait ...")
                 absdata = np.empty((n_cols, n_rows, n_images), dtype=np.float32)
                 #Read the images - They are stored in ImageData1, ImageData2... Each
                 #folder contains 100 images 1-100, 101-200...           
@@ -565,22 +564,23 @@ class XTomoReader():
                     else:                            
                         print "Wrong data type"
                         return
-                    
-                absdata[:,:,i-1] = np.reshape(imgdata, (n_cols, n_rows), order='F')
+                    absdata[:,:,i-1] = np.reshape(imgdata, (n_cols, n_rows), order='F')
 
-                num_x, num_y, num_z = np.shape(absdata)
-                data = np.swapaxes(data,0,2)
-                num_z, num_y, num_x = np.shape(absdata)
-                if x_end is 0:
-                    x_end = num_x
-                if y_end is 0:
-                    y_end = num_y
-                if z_end is 0:
-                    z_end = num_z
-                # Construct dataset from desired z, y, x.
-                dataset = absdata[z_start:z_end:z_step,
-                                y_start:y_end:y_step,
-                                x_start:x_end:x_step]    
+            	data = np.asarray(absdata)
+#            	num_x, num_y, num_z = np.shape(data)
+            	data = np.swapaxes(data,0,2)
+
+            	num_z, num_y, num_x = np.shape(data)
+            	if x_end is 0:
+               		x_end = num_x
+            	if y_end is 0:
+                	y_end = num_y
+            	if z_end is 0:
+                	z_end = num_z
+            	# Construct dataset from desired z, y, x.
+            	dataset = data[z_start:z_end:z_step,
+                            	y_start:y_end:y_step,
+                            	x_start:x_end:x_step]                
             ole.close()
             
         except KeyError:
