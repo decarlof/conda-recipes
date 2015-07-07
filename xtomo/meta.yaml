@@ -1,6 +1,6 @@
 package:
   name: xtomo
-  version: '0.1.31'
+  version: '0.1.42'
 
 source:
   git_url: https://github.com/decarlof/conda-recipes.git

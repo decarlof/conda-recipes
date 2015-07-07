@@ -488,7 +488,6 @@ class XTomoReader():
         out : array
             Returns the data as a matrix.
         """
-        verbose = True
         try:
             olef.isOleFile(self.file_name)
             if (array_name == "theta"):
@@ -567,7 +566,6 @@ class XTomoReader():
                     absdata[:,:,i-1] = np.reshape(imgdata, (n_cols, n_rows), order='F')
 
             	data = np.asarray(absdata)
-#            	num_x, num_y, num_z = np.shape(data)
             	data = np.swapaxes(data,0,2)
 
             	num_z, num_y, num_x = np.shape(data)
@@ -577,6 +575,7 @@ class XTomoReader():
                 	y_end = num_y
             	if z_end is 0:
                 	z_end = num_z
+
             	# Construct dataset from desired z, y, x.
             	dataset = data[z_start:z_end:z_step,
                             	y_start:y_end:y_step,
@@ -587,7 +586,6 @@ class XTomoReader():
             dataset = None
 
         return dataset
-
         
     def spe(self,
             x_start=0,

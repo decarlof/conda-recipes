@@ -103,6 +103,9 @@ class Export():
                         sample_position_z=None,
                         sample_image_shift_x=None,
                         sample_image_shift_y=None,
+                        image_exposure_time=None,
+                        image_time=None,
+                        image_theta=None,
                         hdf5_file_name=None,
                         axes='theta:y:x',
                         log='INFO'
@@ -304,13 +307,17 @@ class Export():
                     f.add_entry(DataExchangeEntry.acquisition(sample_position_y={'value':sample_position_y, 'units': 'microns', 'dataset_opts': {'dtype': 'd'}}))
                 if (sample_position_z != None):
                     f.add_entry(DataExchangeEntry.acquisition(sample_position_z={'value':sample_position_z, 'units': 'microns', 'dataset_opts': {'dtype': 'd'}}))
-
                 if (sample_image_shift_x != None):
                     f.add_entry(DataExchangeEntry.acquisition(sample_image_shift_x={'value':sample_image_shift_x, 'units': 'microns', 'dataset_opts': {'dtype': 'd'}}))
                 if (sample_image_shift_y != None):
                     f.add_entry(DataExchangeEntry.acquisition(sample_image_shift_y={'value':sample_image_shift_y, 'units': 'microns', 'dataset_opts': {'dtype': 'd'}}))
 
-
+                if (image_exposure_time != None):
+                    f.add_entry(DataExchangeEntry.acquisition(image_exposure_time={'value':image_exposure_time, 'units': 's', 'dataset_opts': {'dtype': 'd'}}))
+                if (image_time != None):
+                    f.add_entry(DataExchangeEntry.acquisition(image_time={'value':image_time}))
+                if (image_theta != None):
+                    f.add_entry(DataExchangeEntry.acquisition(image_theta={'value': image_theta, 'units': 'degrees'}))
                 f.close()
                 self.logger.info("DONE!!!!. Created Data Exchange File [%s]", hdf5_file_name)
 

@@ -65,7 +65,7 @@ class Import():
                     data=None, 
                     data_white=None,
                     data_dark=None, 
-                    theta=None, 
+                    theta=None,
                     color_log=True, 
                     stream_handler=True, 
                     log='INFO'):
@@ -625,7 +625,7 @@ class Import():
                     self.data_white = tmpdata
                 else:
                     # Fabricate one white field
-                    self.logger.info("White file [%s]. Generating white fields", white_file_name)  
+                    self.logger.warning("White file [%s]. Generating white fields", white_file_name)  
                     nz, ny, nx = np.shape(self.data)
                     self.data_white = np.ones((1, ny, nx))
             elif (data_type is 'nxs'):
@@ -656,7 +656,7 @@ class Import():
                     self.data_white = tmpdata
                 else:
                     # Fabricate one white field
-                    self.logger.info("White file [%s]. Generating white fields", white_file_name)  
+                    self.logger.warning("White file [%s]. Generating white fields", white_file_name)  
                     nz, ny, nx = np.shape(self.data)
                     self.data_white = np.ones((1, ny, nx))
             elif (data_type is 'xradia'):
@@ -670,7 +670,7 @@ class Import():
                     self.data_white = tmpdata
                 else:
                     # Fabricate one white field
-                    self.logger.info("White file [%s]. Generating white fields", white_file_name)  
+                    self.logger.warning("White file [%s]. Generating white fields", white_file_name)  
                     nz, ny, nx = np.shape(self.data)
                     self.data_white = np.ones((1, ny, nx),dtype=dtype)
             elif (data_type is 'dpt'):
@@ -684,7 +684,7 @@ class Import():
                     self.data_white = tmpdata
                 else:
                     # Fabricate one white field
-                    self.logger.info("White file [%s]. Generating white fields", white_file_name)  
+                    self.logger.warning("White file [%s]. Generating white fields", white_file_name)  
                     nz, ny, nx = np.shape(self.data)
                     self.data_white = np.ones((1, ny, nx))
             else:
@@ -861,34 +861,34 @@ class Import():
                 nz, ny, nx = np.shape(self.data)
                 self.data_dark = np.zeros((1, ny, nx), dtype=dtype)
         # Theta ------------------------------------------------
-	if (data_type is 'h5'):
-		self.logger.info("Attempt reading angles from file: [%s]", file_name)                    
-		f = XTomoReader(file_name)
-		self.logger.info("Angle file: [%s] exists", file_name) 
-                array_name = '/'.join([exchange_base, "theta"])                   
-		tmpdata = f.hdf5(z_start = projections_start, 
+        if (data_type is 'h5'):
+            self.logger.info("Attempt reading angles from file: [%s]", file_name)                    
+            f = XTomoReader(file_name)
+            self.logger.info("Angle file: [%s] exists", file_name)
+            array_name = '/'.join([exchange_base, "theta"])                   
+            tmpdata = f.hdf5(z_start = projections_start, 
                         z_end = projections_end,
                         z_step = projections_step,
                         y_start = slices_start,
                         y_end = slices_end,
                         y_step = slices_step,
                         array_name=array_name)
-		self.theta = tmpdata
-	elif (data_type is 'xradia'):
-		self.logger.info("Attempt reading angles from file: [%s]", file_name)                    
-		f = XTomoReader(file_name)
-        	self.logger.info("Angle file: [%s] exists", file_name)                    
-		tmpdata = f.txrm(array_name='theta')
-		self.theta = tmpdata
-	else:
-	        # Fabricate theta values
-        	nz, ny, nx = np.shape(self.data)
-        	z = np.arange(nz)
-        	self.logger.warning("Angle file missing")                    
-        	self.logger.warning("Generating angles")                    
+            self.theta = tmpdata
+        elif (data_type is 'xradia'):
+            self.logger.info("Attempt reading angles from file: [%s]", file_name)                    
+            f = XTomoReader(file_name)
+            self.logger.info("Angle file: [%s] exists", file_name)                    
+            tmpdata = f.txrm(array_name='theta')
+            self.theta = tmpdata
+        else:
+            # Fabricate theta values
+            nz, ny, nx = np.shape(self.data)
+            z = np.arange(nz)
+            self.logger.warning("Angle file missing")                    
+            self.logger.warning("Generating angles")                    
 
-        	projections_angle_range = projections_angle_end - projections_angle_start
-        	self.theta = (z * float(projections_angle_range) / (len(z)))
+            projections_angle_range = projections_angle_end - projections_angle_start
+            self.theta = (z * float(projections_angle_range) / (len(z)))
 
         return self.data, self.data_white, self.data_dark, self.theta
 
