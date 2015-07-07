@@ -877,6 +877,21 @@ class DataExchangeEntry(object):
                 'units': 'pixels',
                 'docstring': 'Vector containing the shift of the sample axis y at each projection on the detector plane.'        
             },        
+            'image_exposure_time': {
+                'value': None,
+                'units': 's',
+                'docstring': 'Vector containing each image exposure time.'        
+            },        
+            'image_time': {
+                'value': None,
+                'units': 'time',
+                'docstring': 'Vector containing the date/time each image was acquired.'        
+            },        
+            'image_theta': {
+                'value': None,
+                'units': 'degree',
+                'docstring': 'Vector containing the rotary stage angular position read from the encoder at each image.'        
+            },        
         }
 
     def _generate_classes(self):
