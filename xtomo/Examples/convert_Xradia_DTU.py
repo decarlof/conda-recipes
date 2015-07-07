@@ -58,7 +58,7 @@ def read_meta_txm(file_name, meta_data_name=None):
 def main():
 
     file_name = '/local/dataraid/databank/templates/xradia_dtu/sample_name.txrm'
-    hdf5_file_name = '/local/dataraid/databank/templates/dataExchange/tmp/DTU_new_13.h5'
+    hdf5_file_name = '/local/dataraid/databank/templates/dataExchange/tmp/DTU.h5'
     sample_name = 'halvmaane_150kV-HE6-20X-60s'
 
     experimenter_name="Martin Skovgaard Andersen"
@@ -67,11 +67,8 @@ def main():
     instrument_comment="Xradia Versa micro CT scanner"  
 
     image_exposure_time = read_meta_txm(file_name,'ImageInfo/ExpTimes')
-#    print image_exposure_time
     image_time = read_meta_txm(file_name,'ImageInfo/Date')
-#    print image_time
     image_theta = read_meta_txm(file_name,'ImageInfo/Angles')
-#    print image_theta
     sample_image_shift_x = read_meta_txm(file_name,'Alignment/X-Shifts')
     sample_image_shift_y = read_meta_txm(file_name,'Alignment/Y-Shifts')
     sample_position_x = read_meta_txm(file_name,'ImageInfo/XPosition')
