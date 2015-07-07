@@ -17,10 +17,6 @@ requirements:
     - numpy
     - pillow
 
-test:
-  imports:
-    - fabio
-
 about:
   license: GPL
   home: https://github.com/kif/fabio
