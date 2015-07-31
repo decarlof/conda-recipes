@@ -569,7 +569,7 @@ class DataExchangeEntry(object):
             'exposure_time': {
                 'value': None,
                 'units': 's',
-                'docstring': 'The detector exposure time (s).'
+                'docstring': 'The set detector exposure time (s).'
             },
             'delay_time': {
                 'value': None,
@@ -877,21 +877,46 @@ class DataExchangeEntry(object):
                 'units': 'pixels',
                 'docstring': 'Vector containing the shift of the sample axis y at each projection on the detector plane.'        
             },        
-            'image_exposure_time': {
-                'value': None,
-                'units': 's',
-                'docstring': 'Vector containing each image exposure time.'        
-            },        
-            'image_time': {
-                'value': None,
-                'units': 'time',
-                'docstring': 'Vector containing the date/time each image was acquired.'        
-            },        
             'image_theta': {
                 'value': None,
                 'units': 'degree',
                 'docstring': 'Vector containing the rotary stage angular position read from the encoder at each image.'        
             },        
+            'scan_index': {
+                'value': None,
+                'units': None,
+                'docstring': 'Vector containin for each image the identifier assigned by beamline controls to each individual series of images or scan.'        
+            },        
+            'scan_date': {
+                'value': None,
+                'units': None,
+                'docstring': 'Vector containin for each image the wall date/time at start of scan in iso 8601.'        
+            },        
+            'image_date': {
+                'value': None,
+                'units': 'time',
+                'docstring': 'Vector containing the date/time each image was acquired in iso 8601..'        
+            },        
+            'time_stamp': {
+                'value': None,
+                'units': None,
+                'docstring': 'Vector containin for each image the relative time since scan_date in 1e-7 seconds.'        
+            },        
+            'image_number': {
+                'value': None,
+                'units': None,
+                'docstring': 'Vector containin for each image the the image serial number as assigned by the camera. Unique for each individual scan. Always starts at 0.'        
+            },        
+            'image_exposure_time': {
+                'value': None,
+                'units': None,
+                'docstring': 'Vector containin for each image the the measured exposure time in 1e-7 seconds (0.1us)'        
+            },        
+            'image_is_complete': {
+                'value': None,
+                'units': None,
+                'docstring': 'Vector containin for each image the boolen status of: is any pixel data missing?'        
+            }
         }
 
     def _generate_classes(self):
