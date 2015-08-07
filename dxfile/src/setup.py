@@ -6,7 +6,7 @@ from distutils.extension import Extension
 setup(
     author = 'David Vine Argonne National Laboratory',
     description = 'Write data exchange files.',
-    py_modules = ['data_exchange'],
+    py_modules = ['dxtomo'],
     name = 'dxfile',
     requires = (
         'python',
