@@ -15,7 +15,7 @@
 .. _xtomo_raw: dataexchange.xtomo.xtomo_importer.html
 """
 
-from data_exchange import DataExchangeFile, DataExchangeEntry
+from dxtomo import File, Entry
 import numpy as np
 import datetime
 import os
@@ -95,20 +95,20 @@ def main():
 
             # Write the Data Exchange HDF5 file.
             # Open DataExchange file
-            f = DataExchangeFile(fname, mode='w') 
+            f = File(fname, mode='w') 
 
-            f.add_entry(DataExchangeEntry.experimenter(name={'value':experimenter_name}))
-            f.add_entry(DataExchangeEntry.experimenter(affiliation={'value':experimenter_affiliation}))
-            f.add_entry(DataExchangeEntry.experimenter(email={'value':experimenter_email}))
-            f.add_entry(DataExchangeEntry.instrument(comment={'value': instrument_comment}))
-            f.add_entry(DataExchangeEntry.sample( name={'value':sample_name}))
-            f.add_entry(DataExchangeEntry.acquisition(scan_index={'value': scan_index}))
-            f.add_entry(DataExchangeEntry.acquisition(scan_datetime={'value': scan_datetime}))                
-            f.add_entry(DataExchangeEntry.acquisition(image_theta={'value': image_theta, 'units': 'degrees'}))
-            f.add_entry(DataExchangeEntry.acquisition(time_stamp={'value':time_stamp, 'units': '1e-7s', 'dataset_opts': {'dtype': 'd'}})) 
-            f.add_entry(DataExchangeEntry.acquisition(image_number={'value': image_number}))
-            f.add_entry(DataExchangeEntry.acquisition(image_exposure_time={'value':image_exposure_time, 'units': '1e-7s', 'dataset_opts': {'dtype': 'd'}}))
-            f.add_entry(DataExchangeEntry.acquisition(image_is_complete={'value': image_is_complete}))
+            f.add_entry(Entry.experimenter(name={'value':experimenter_name}))
+            f.add_entry(Entry.experimenter(affiliation={'value':experimenter_affiliation}))
+            f.add_entry(Entry.experimenter(email={'value':experimenter_email}))
+            f.add_entry(Entry.instrument(comment={'value': instrument_comment}))
+            f.add_entry(Entry.sample( name={'value':sample_name}))
+            f.add_entry(Entry.acquisition(scan_index={'value': scan_index}))
+            f.add_entry(Entry.acquisition(scan_datetime={'value': scan_datetime}))                
+            f.add_entry(Entry.acquisition(image_theta={'value': image_theta, 'units': 'degrees'}))
+            f.add_entry(Entry.acquisition(time_stamp={'value':time_stamp, 'units': '1e-7s', 'dataset_opts': {'dtype': 'd'}})) 
+            f.add_entry(Entry.acquisition(image_number={'value': image_number}))
+            f.add_entry(Entry.acquisition(image_exposure_time={'value':image_exposure_time, 'units': '1e-7s', 'dataset_opts': {'dtype': 'd'}}))
+            f.add_entry(Entry.acquisition(image_is_complete={'value': image_is_complete}))
 
             f.close()
  

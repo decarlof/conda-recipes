@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 
-.. module:: data_exchange.py
+.. module:: dxtomo.py
    :platform: Unix
    :synopsis: Subclasses the h5py module for interacting with Data Exchange files.
 
