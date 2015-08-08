@@ -1,19 +1,55 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
+# #########################################################################
+# Copyright (c) 2015, UChicago Argonne, LLC. All rights reserved.         #
+#                                                                         #
+# Copyright 2015. UChicago Argonne, LLC. This software was produced       #
+# under U.S. Government contract DE-AC02-06CH11357 for Argonne National   #
+# Laboratory (ANL), which is operated by UChicago Argonne, LLC for the    #
+# U.S. Department of Energy. The U.S. Government has rights to use,       #
+# reproduce, and distribute this software.  NEITHER THE GOVERNMENT NOR    #
+# UChicago Argonne, LLC MAKES ANY WARRANTY, EXPRESS OR IMPLIED, OR        #
+# ASSUMES ANY LIABILITY FOR THE USE OF THIS SOFTWARE.  If software is     #
+# modified to produce derivative works, such modified software should     #
+# be clearly marked, so as not to confuse it with the version available   #
+# from ANL.                                                               #
+#                                                                         #
+# Additionally, redistribution and use in source and binary forms, with   #
+# or without modification, are permitted provided that the following      #
+# conditions are met:                                                     #
+#                                                                         #
+#     * Redistributions of source code must retain the above copyright    #
+#       notice, this list of conditions and the following disclaimer.     #
+#                                                                         #
+#     * Redistributions in binary form must reproduce the above copyright #
+#       notice, this list of conditions and the following disclaimer in   #
+#       the documentation and/or other materials provided with the        #
+#       distribution.                                                     #
+#                                                                         #
+#     * Neither the name of UChicago Argonne, LLC, Argonne National       #
+#       Laboratory, ANL, the U.S. Government, nor the names of its        #
+#       contributors may be used to endorse or promote products derived   #
+#       from this software without specific prior written permission.     #
+#                                                                         #
+# THIS SOFTWARE IS PROVIDED BY UChicago Argonne, LLC AND CONTRIBUTORS     #
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT       #
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS       #
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL UChicago     #
+# Argonne, LLC OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,        #
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,    #
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;        #
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER        #
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT      #
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN       #
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE         #
+# POSSIBILITY OF SUCH DAMAGE.                                             #
+# #########################################################################
+
+"""
+Subclasses the h5py module for interacting with Data Exchange files.
 """
 
-.. module:: dxtomo.py
-   :platform: Unix
-   :synopsis: Subclasses the h5py module for interacting with Data Exchange files.
-
-:Author:
-  `David Vine <mailto: djvine@gmail.com>`_
-
-:Organization:
-  Argonne National Laboratory, Argonne, IL 60439 USA
-
-:Version: 2014.11.23
-
-"""
 
 from __future__ import print_function
 import h5py
@@ -22,16 +58,30 @@ import sys
 py3 = sys.version_info[0] == 3
 
 
+__author__ = 'David Vine'
+__copyright__ = 'Copyright (c) 2015, UChicago Argonne, LLC.'
+__docformat__ = 'restructuredtext en'
+__platform__ = 'Unix'
+__version__ = '1.5'
+__all__ = ['File', 'Entry']
+
 class File(h5py.File):
-    """
-    .. class:: File(object)
-        Interact with Data Exchange files.
-
-
-        :method create_top_level_group: Helper function for creating a top level group which will update the ``implements`` group automagically.
-        :method add_entry: This method is used to parse Entry objects and add them to the File.
 
     """
+    Interact with Data Exchange files.
+
+    Methods
+    -------
+    create_top_level_group(self, group_name)
+        Helper function for creating a top level group which will 
+        update the ``implements`` group automagically.
+
+    method add_entry(self, dexen_ob, overwrite=False)
+        This method is used to parse DataExchangeEntry objects and 
+        add them to the DataExchangeFile.
+
+    """
+
     def __init__(self, *args, **kwargs):
         super(File, self).__init__(*args, **kwargs)
 
@@ -64,10 +114,9 @@ class File(h5py.File):
 
     def create_top_level_group(self, group_name):
         """
-        .. method:: create_top_level_group(self, group_name)
-
-            Creates a group in the file root and updates the ``implements`` group accordingly.
-            This method should ALWAYS be used to create groups in the file root.
+        Create a group in the file root and updates the ``implements`` 
+        group accordingly. This method should ALWAYS be used to create 
+        groups in the file root.
         """
         self.create_group(group_name)
         try:
@@ -80,11 +129,9 @@ class File(h5py.File):
 
     def add_entry(self, dexen_ob, overwrite=False):
         """
-        .. add_entry(self, dexen_ob, overwrite=False)
-
-            This method is used to parse Entry objects and add them to the File.
+        This method is used to parse DataExchangeEntry objects and add 
+        them to the DataExchangeFile.
         """
-
         if type(dexen_ob) != list:
             dexen_ob = [dexen_ob]
 
@@ -141,6 +188,19 @@ class File(h5py.File):
 
 class Entry(object):
 
+    """
+    Interact with Data Exchange files.
+
+    Methods
+    -------
+    _entry_definitions(self)
+        Contains the archetypes for Data Exchange file entries.
+
+    _generate_classes(self)
+        This method is used to turn the Entry._entry_definitions into generate_classes
+        which can be instantitated for hold data.
+    """
+
     def __init__(self, **kwargs):
         self._entry_definitions()
         self._generate_classes()
@@ -148,27 +208,25 @@ class Entry(object):
 
     def _entry_definitions(self):
         """
-        ..method:: _entry_definitions(self)
+        This method contains the archetypes for Data Exchange file entries.
 
-            This method contains the archetypes for Data Exchange file entries.
-
-            The syntax for an entry is:
-                *'root': The HDF5 path where this entry will be created (e.g. '/measurement_3/sample' or '/exchange/').
-                *'entry_name': The name of entry (e.g. 'monochromator' or 'sample_7'). It is a HDF5 Group.
-                *'docstring': Describes this type of entry. E.g for sample: "The sample measured."
-                                    *This is used only for autogegnerating documentation for Entry.
-                                    *It does not get written to the File.
-                *'ENTRY':   An entry is a dataset with attributes under the 'name' group.
-                            Each 'ENTRY' must have:
-                                * value: The dataset
-                            Each 'ENTRY' should have:
-                                * units: Units for value - an attribute of the dataset
-                                * docstring: Used for autogenerating documentation
-                            Each 'ENTRY' can have (i.e optional):
-                                *'dataset_opts': Options passed to the create_dataset function. E.g.:
-                                *'dataset_opts': {'compression':'gzip', 'compression_opts':4}
-                            Where a value is ``None`` this entry will not be added to the File.
-                            'ENTRY' can have any other parameter and these will be treated as HDF5 dataset attributes
+        The syntax for an entry is:
+            *'root': The HDF5 path where this entry will be created (e.g. '/measurement_3/sample' or '/exchange/').
+            *'entry_name': The name of entry (e.g. 'monochromator' or 'sample_7'). It is a HDF5 Group.
+            *'docstring': Describes this type of entry. E.g for sample: "The sample measured."
+                                *This is used only for autogegnerating documentation for DataExchangeEntry.
+                                *It does not get written to the DataExchangeFile.
+            *'ENTRY':   An entry is a dataset with attributes under the 'name' group.
+                        Each 'ENTRY' must have:
+                            * value: The dataset
+                        Each 'ENTRY' should have:
+                            * units: Units for value - an attribute of the dataset
+                            * docstring: Used for autogenerating documentation
+                        Each 'ENTRY' can have (i.e optional):
+                            *'dataset_opts': Options passed to the create_dataset function. E.g.:
+                            *'dataset_opts': {'compression':'gzip', 'compression_opts':4}
+                        Where a value is ``None`` this entry will not be added to the DataExchangeFile.
+                        'ENTRY' can have any other parameter and these will be treated as HDF5 dataset attributes
         """
         self._data = {
             'root': '/exchange',
