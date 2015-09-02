@@ -1,9 +1,6 @@
 package:
   name: dxfile
-  version: '1.101'
-
-source:
-  git_url: https://github.com/decarlof/conda-recipes.git
+  version: '0.2'
   
 build:
   number: 0
@@ -19,7 +16,7 @@ requirements:
 
 test:
   imports:
-    - data_exchange
+    - dxtomo
 
 about:
   home: http://dataexchange.readthedocs.org
